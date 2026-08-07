@@ -1,0 +1,64 @@
+:root {
+  /* Brand palette — Deep Grove, lightened: ivory/cream dominant, emerald + brass as accents */
+  --color-ivory: #FAF7EF;
+  --color-cream: #F1EAD8;
+  --color-white: #FFFFFF;
+
+  --color-emerald-900: #12352A;
+  --color-emerald-700: #1B4D3A;
+  --color-emerald-600: #235E48;
+  --color-emerald-500: #2F6B52;
+  --color-emerald-100: #E4EEE6;
+
+  --color-brass: #B08D4F;
+  --color-brass-light: #D9C08A;
+  --color-brass-dark: #8E6F38;
+
+  --color-bark: #2A2620;
+  --color-text-secondary: #6B6656;
+  --color-text-on-dark: #F1EAD8;
+  --color-text-on-dark-muted: #B9C2BB;
+
+  --color-border: #E4DCC8;
+  --color-border-on-dark: rgba(241, 234, 216, 0.16);
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Karla', -apple-system, sans-serif;
+
+  --fs-hero: clamp(2.4rem, 5vw, 4.2rem);
+  --fs-h1: clamp(2rem, 3.4vw, 2.8rem);
+  --fs-h2: clamp(1.5rem, 2.4vw, 2rem);
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8rem;
+
+  /* Spacing scale */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-3xl: 140px;
+
+  /* Shape & layout */
+  --radius-sm: 8px;
+  --radius-md: 18px;
+  --radius-lg: 32px;
+  --radius-organic: 62% 38% 55% 45% / 45% 55% 45% 55%;
+  --container: 1200px;
+  --container-narrow: 760px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 0.2s;
+  --dur-base: 0.4s;
+
+  /* Site identity — swap these when reusing the template for another venue */
+  --brand-name: "Emerald Grove Events";
+  --brand-location: "JP Nagar, Bangalore";
+}
