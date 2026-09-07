@@ -1,0 +1,28 @@
+.pricing-hero { padding-top: calc(var(--space-3xl) + 20px); padding-bottom: var(--space-lg); }
+.pricing-hero h1 { font-size: var(--fs-h1); }
+.pricing-hero .lede { margin-top: var(--space-sm); color: var(--color-text-secondary); max-width: 60ch; }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+.price-card { position: relative; }
+.price-card.is-featured { border-color: var(--color-brass); background: var(--color-emerald-100); }
+.price-card .badge {
+  position: absolute; top: -12px; left: var(--space-lg); background: var(--color-brass); color: var(--color-emerald-900);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px;
+}
+.price-card h3 { font-size: 1.05rem; }
+.price-card .duration { font-size: var(--fs-small); color: var(--color-text-secondary); margin-bottom: var(--space-sm); }
+.price-card .rate { display: flex; justify-content: space-between; padding-block: 8px; border-top: 1px solid var(--color-border); font-size: var(--fs-small); }
+.price-card .rate b { font-family: var(--font-display); font-size: 1.05rem; color: var(--color-emerald-900); }
+@media (max-width: 980px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.offpeak-card {
+  margin-top: var(--space-md); background: var(--color-white); border: 1px dashed var(--color-brass); border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);
+}
+.offpeak-card b { font-family: var(--font-display); color: var(--color-emerald-900); font-size: 1.1rem; }
+
+.addon-table { width: 100%; border-collapse: collapse; margin-top: var(--space-sm); }
+.addon-table th, .addon-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--color-border); font-size: 0.92rem; }
+.addon-table th { font-weight: 700; color: var(--color-emerald-900); background: var(--color-cream); }
+.addon-table td b { font-family: var(--font-display); color: var(--color-emerald-900); }

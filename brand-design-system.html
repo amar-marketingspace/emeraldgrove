@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Design System – Emerald Grove Events &amp; Spaces</title>
+<meta name="description" content="Internal brand design system for Emerald Grove Events & Spaces. For internal use only.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+<style>
+:root {
+  /* Locked brand palette – Emerald / Forest / Sage / Sand / Gold */
+  --color-ivory: #FAF7EF;
+  --color-cream: #E9E1D4;    /* "Sand" */
+  --color-white: #FFFFFF;
+
+  --color-emerald-900: #0F3D2E;   /* "Emerald" */
+  --color-emerald-700: #2E5D46;   /* "Forest" */
+  --color-emerald-600: #3A6E55;
+  --color-emerald-500: #4A8267;
+  --color-emerald-100: #E1E9E3;
+  --color-sage: #8FA892;
+
+  --color-brass: #D4AF37;         /* "Gold" */
+  --color-brass-light: #E4CB77;
+  --color-brass-dark: #A6842A;
+
+  --color-bark: #241F1A;
+  --color-text-secondary: #6B6656;
+  --color-text-on-dark: #F1EAD8;
+  --color-text-on-dark-muted: #B9C2BB;
+
+  --color-border: #E4DCC8;
+  --color-border-on-dark: rgba(241, 234, 216, 0.16);
+
+  /* Typography – Playfair Display for headings (proper lowercase, works at
+     paragraph-heading scale, unlike Cinzel which is caps-only and better
+     reserved for the logo wordmark art itself); Montserrat for body. */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', -apple-system, sans-serif;
+
+  --fs-hero: clamp(2.4rem, 5vw, 4.2rem);
+  --fs-h1: clamp(2rem, 3.4vw, 2.8rem);
+  --fs-h2: clamp(1.5rem, 2.4vw, 2rem);
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8rem;
+
+  /* Spacing scale */
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-3xl: 140px;
+
+  /* Shape & layout */
+  --radius-sm: 8px;
+  --radius-md: 18px;
+  --radius-lg: 32px;
+  --radius-organic: 62% 38% 55% 45% / 45% 55% 45% 55%;
+  --container: 1200px;
+  --container-narrow: 760px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 0.2s;
+  --dur-base: 0.4s;
+
+  /* Site identity – swap these when reusing the template for another venue */
+  --brand-name: "Emerald Grove Events & Spaces";
+  --brand-location: "JP Nagar, Bangalore";
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-ivory);
+  color: var(--color-bark);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; cursor: pointer; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; margin: 0; color: var(--color-emerald-900); line-height: 1.15; }
+p { margin: 0; }
+
+/* ---------- Layout primitives ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+.container--narrow { max-width: var(--container-narrow); }
+
+.section { padding-block: var(--space-3xl); position: relative; overflow: clip; }
+.section--cream { background: var(--color-cream); }
+.section--dark { background: var(--color-emerald-900); color: var(--color-text-on-dark); }
+.section--dark h2, .section--dark h3 { color: var(--color-text-on-dark); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brass-dark);
+  display: inline-block;
+  margin-bottom: var(--space-xs);
+}
+.section--dark .eyebrow { color: var(--color-brass-light); }
+
+.section-head { max-width: 640px; margin-bottom: var(--space-xl); }
+.section-head--center { margin-inline: auto; text-align: center; }
+
+/* Wavy accent underline – used under key words instead of a straight rule */
+.underline-accent { position: relative; white-space: nowrap; }
+.underline-accent svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.3em; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0.9em 1.6em;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--color-emerald-700); color: var(--color-ivory); }
+.btn--primary:hover { background: var(--color-emerald-600); }
+.btn--outline { background: transparent; color: var(--color-emerald-900); border-color: var(--color-emerald-900); }
+.btn--outline:hover { background: var(--color-emerald-900); color: var(--color-ivory); }
+.section--dark .btn--outline { color: var(--color-text-on-dark); border-color: var(--color-border-on-dark); }
+.section--dark .btn--outline:hover { background: var(--color-text-on-dark); color: var(--color-emerald-900); }
+.btn--brass { background: var(--color-brass); color: var(--color-emerald-900); }
+.btn--brass:hover { background: var(--color-brass-light); }
+
+/* ---------- Botanical texture (very low-opacity, reused across pages) ---------- */
+.texture-grove {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%2312352A' stroke-width='1.4'%3E%3Cpath d='M20 200 C20 140 40 120 30 60'/%3E%3Cpath d='M30 90 C50 85 55 70 50 55'/%3E%3Cpath d='M30 130 C10 125 5 110 10 95'/%3E%3Cpath d='M170 210 C170 150 190 130 180 70'/%3E%3Cpath d='M180 100 C200 95 205 80 200 65'/%3E%3Cpath d='M180 140 C160 135 155 120 160 105'/%3E%3C/g%3E%3C/svg%3E");
+}
+.section--dark .texture-grove { opacity: 0.08; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23F1EAD8' stroke-width='1.4'%3E%3Cpath d='M20 200 C20 140 40 120 30 60'/%3E%3Cpath d='M30 90 C50 85 55 70 50 55'/%3E%3Cpath d='M30 130 C10 125 5 110 10 95'/%3E%3Cpath d='M170 210 C170 150 190 130 180 70'/%3E%3Cpath d='M180 100 C200 95 205 80 200 65'/%3E%3Cpath d='M180 140 C160 135 155 120 160 105'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---------- Organic section divider ---------- */
+.divider { display: block; width: 100%; height: 64px; margin-top: -1px; }
+
+/* ---------- Utility ---------- */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+.skip-link {
+  position: absolute; left: -999px; top: 0; background: var(--color-emerald-900);
+  color: var(--color-ivory); padding: 12px 20px; z-index: 200; border-radius: 0 0 8px 0;
+}
+.skip-link:focus { left: 0; }
+
+@media (max-width: 720px) {
+  .section { padding-block: var(--space-2xl); }
+}
+
+/* ---------- Scroll reveal (driven by main.js) ---------- */
+[data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal="stagger"] > * { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+[data-reveal="stagger"].is-visible > * { opacity: 1; transform: none; }
+[data-reveal="stagger"].is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+[data-reveal="stagger"].is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+[data-reveal="stagger"].is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+[data-reveal="stagger"].is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+[data-reveal="stagger"].is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+
+/* ---------- Decorative blobs (scattered across sections for visual life) ---------- */
+.deco-blob { position: absolute; border-radius: var(--radius-organic); z-index: 0; pointer-events: none; }
+.deco-blob--sm { width: 220px; height: 220px; }
+.deco-blob--md { width: 360px; height: 360px; }
+.deco-blob--lg { width: 560px; height: 560px; }
+.deco-blob--emerald { background: var(--color-emerald-100); opacity: 0.7; }
+.deco-blob--brass { background: var(--color-brass-light); opacity: 0.22; }
+.deco-blob--outline { background: none; border: 1.5px solid var(--color-brass); opacity: 0.35; }
+@media (max-width: 720px) { .deco-blob--lg { width: 340px; height: 340px; } .deco-blob--md { width: 240px; height: 240px; } }
+
+/* ---------- Layout: sidebar + content ---------- */
+.ds-shell { display: grid; grid-template-columns: 240px 1fr; gap: var(--space-2xl); align-items: start; padding-top: 40px; }
+.ds-sidebar {
+  position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow-y: auto;
+  padding-right: var(--space-sm); border-right: 1px solid var(--color-border);
+}
+.ds-sidebar .ds-group-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-brass-dark); margin: var(--space-md) 0 var(--space-xs);
+}
+.ds-sidebar .ds-group-label:first-child { margin-top: 0; }
+.ds-sidebar a {
+  display: block; padding: 5px 0; font-size: 0.85rem; color: var(--color-text-secondary);
+  border-left: 2px solid transparent; padding-left: 10px; margin-left: -1px;
+}
+.ds-sidebar a:hover { color: var(--color-emerald-900); }
+.ds-sidebar a.is-active { color: var(--color-emerald-900); font-weight: 700; border-left-color: var(--color-brass); }
+.ds-content { min-width: 0; }
+
+@media (max-width: 980px) {
+  .ds-shell { grid-template-columns: 1fr; }
+  .ds-sidebar { position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-md); }
+}
+
+/* ---------- Section chrome ---------- */
+.ds-section { padding-block: var(--space-2xl); border-bottom: 1px solid var(--color-border); }
+.ds-section:last-child { border-bottom: none; }
+.ds-section h2 { font-size: 1.8rem; }
+.ds-section .ds-num { color: var(--color-brass-dark); font-family: var(--font-body); font-weight: 700; font-size: 0.85rem; }
+.ds-section > p.ds-intro { color: var(--color-text-secondary); max-width: 68ch; margin-top: var(--space-xs); }
+.ds-subhead { font-size: 1.1rem; margin: var(--space-lg) 0 var(--space-sm); color: var(--color-emerald-900); }
+
+/* ---------- Cover ---------- */
+.ds-cover { background: var(--color-emerald-900); color: var(--color-text-on-dark); padding: var(--space-2xl) 0; position: relative; overflow: clip; }
+.ds-cover h1 { color: var(--color-ivory); font-size: clamp(2.2rem, 4vw, 3.2rem); }
+.ds-cover .ds-tag { color: var(--color-brass-light); font-size: 1.1rem; margin-top: var(--space-xs); font-family: var(--font-display); font-style: italic; }
+.ds-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: var(--space-md); margin-top: var(--space-xl); }
+.ds-facts div { border-top: 1px solid var(--color-border-on-dark); padding-top: 10px; }
+.ds-facts .k { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-on-dark-muted); }
+.ds-facts .v { font-family: var(--font-display); font-size: 1rem; margin-top: 4px; }
+.ds-internal-badge {
+  display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-emerald-900); background: var(--color-brass-light); padding: 5px 12px; border-radius: 999px; margin-bottom: var(--space-md);
+}
+
+/* ---------- Swatches ---------- */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: var(--space-sm); margin-top: var(--space-md); }
+.swatch {
+  border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); cursor: pointer;
+  background: var(--color-white); transition: transform var(--dur-fast) var(--ease);
+}
+.swatch:hover { transform: translateY(-3px); }
+.swatch .chip { height: 84px; }
+.swatch .meta { padding: 10px 12px; }
+.swatch .name { font-weight: 700; font-size: 0.85rem; color: var(--color-emerald-900); }
+.swatch .hex { font-size: 0.78rem; color: var(--color-text-secondary); font-family: monospace; margin-top: 2px; }
+.swatch .copied-flag { font-size: 0.72rem; color: var(--color-brass-dark); font-weight: 700; opacity: 0; transition: opacity 0.2s; }
+.swatch.is-copied .copied-flag { opacity: 1; }
+
+.ratio-bar { display: flex; height: 28px; border-radius: 999px; overflow: hidden; margin-top: var(--space-sm); max-width: 500px; }
+.ratio-bar span { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--color-ivory); }
+
+/* ---------- Contrast table ---------- */
+.ds-table { width: 100%; border-collapse: collapse; margin-top: var(--space-sm); }
+.ds-table th, .ds-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); font-size: 0.9rem; }
+.ds-table th { background: var(--color-cream); font-weight: 700; color: var(--color-emerald-900); }
+.pass { color: var(--color-emerald-700); font-weight: 700; }
+.fail { color: #A3432F; font-weight: 700; }
+
+/* ---------- Type specimens ---------- */
+.type-specimen { padding: var(--space-md) 0; border-top: 1px solid var(--color-border); }
+.type-specimen .label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 8px; }
+.scale-table { width: 100%; border-collapse: collapse; margin-top: var(--space-md); }
+.scale-table th, .scale-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--color-border); font-size: 0.85rem; vertical-align: middle; }
+.scale-table th { color: var(--color-emerald-900); font-weight: 700; }
+
+/* ---------- Logo variants ---------- */
+.logo-variant-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.logo-variant { border-radius: var(--radius-md); border: 1px solid var(--color-border); overflow: hidden; }
+.logo-variant .stage { height: 160px; display: flex; align-items: center; justify-content: center; }
+.logo-variant .stage svg { width: 90px; height: 90px; }
+.logo-variant .cap { padding: 10px 12px; background: var(--color-white); font-size: 0.8rem; font-weight: 700; color: var(--color-emerald-900); display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.logo-variant .cap button { font-size: 0.7rem; font-weight: 700; color: var(--color-brass-dark); background:none; border:none; cursor:pointer; padding:0; }
+.logo-size-row { display: flex; align-items: flex-end; gap: var(--space-lg); margin-top: var(--space-md); flex-wrap: wrap; }
+.logo-size-row div { text-align: center; }
+.logo-size-row .cap { font-size: 0.72rem; color: var(--color-text-secondary); margin-top: 6px; }
+
+/* ---------- Code blocks ---------- */
+.code-block {
+  position: relative; background: var(--color-bark); color: #E9E1D4; border-radius: var(--radius-md);
+  padding: var(--space-md); font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.78rem; line-height: 1.6;
+  overflow-x: auto; margin-top: var(--space-sm);
+}
+.code-block pre { margin: 0; white-space: pre-wrap; word-break: break-word; }
+.code-block .copy-btn {
+  position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.1); color: #E9E1D4;
+  border: none; border-radius: 999px; padding: 5px 12px; font-size: 0.72rem; font-weight: 700; cursor: pointer;
+}
+.code-block .copy-btn:hover { background: rgba(255,255,255,0.18); }
+
+/* ---------- Component previews ---------- */
+.preview-box { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-lg); margin-top: var(--space-sm); }
+.preview-row { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+
+/* ---------- Do / Don't cards ---------- */
+.dodont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-top: var(--space-md); }
+.dodont-card { border-radius: var(--radius-md); padding: var(--space-md) var(--space-lg); }
+.dodont-card.do { background: var(--color-emerald-100); border: 1px solid var(--color-emerald-500); }
+.dodont-card.dont { background: #FBEDE8; border: 1px solid #C97256; }
+.dodont-card .tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.dodont-card.do .tag { color: var(--color-emerald-700); }
+.dodont-card.dont .tag { color: #A3432F; }
+.dodont-card p { margin-top: 6px; font-size: 0.9rem; color: var(--color-bark); }
+.dodont-card .why { margin-top: 6px; font-size: 0.8rem; color: var(--color-text-secondary); font-style: italic; }
+@media (max-width: 700px) { .dodont-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Voice table ---------- */
+.voice-table { width: 100%; border-collapse: collapse; margin-top: var(--space-sm); }
+.voice-table th, .voice-table td { padding: 10px 12px; border-bottom: 1px solid var(--color-border); font-size: 0.88rem; vertical-align: top; }
+.voice-table th { background: var(--color-cream); text-align: left; }
+.voice-table .no { color: var(--color-text-secondary); text-decoration: line-through; }
+.voice-table .yes { color: var(--color-emerald-700); font-weight: 600; }
+
+/* ---------- Misuse gallery ---------- */
+.misuse-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.misuse-tile { border-radius: var(--radius-md); border: 1px dashed #C97256; overflow: hidden; }
+.misuse-tile .stage { height: 130px; display: flex; align-items: center; justify-content: center; background: var(--color-cream); position: relative; }
+.misuse-tile .stage svg { width: 70px; height: 70px; }
+.misuse-tile .label { padding: 8px 10px; font-size: 0.75rem; color: #A3432F; font-weight: 700; background: #FBEDE8; }
+
+/* ---------- Asset checklist ---------- */
+.asset-table { width: 100%; border-collapse: collapse; margin-top: var(--space-sm); }
+.asset-table th, .asset-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); font-size: 0.88rem; }
+.asset-table th { background: var(--color-cream); font-weight: 700; }
+.status-pill { font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; display: inline-block; }
+.status-pill.shipped { background: var(--color-emerald-100); color: var(--color-emerald-700); }
+.status-pill.placeholder { background: #FBEDE8; color: #A3432F; }
+.status-pill.pending { background: var(--color-cream); color: var(--color-brass-dark); }
+
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="ds-cover">
+  <div class="container" style="position:relative;">
+    <div class="texture-grove" aria-hidden="true"></div>
+    <div style="position:relative; z-index:1;">
+      <span class="ds-internal-badge">For internal use only &ndash; noindex</span>
+      <h1>Brand Design System</h1>
+      <p class="ds-tag">Emerald Grove Events &amp; Spaces &ndash; v1.0 &ndash; August 2026</p>
+      <div class="ds-facts">
+        <div><div class="k">Brand name</div><div class="v">Emerald Grove Events &amp; Spaces</div></div>
+        <div><div class="k">Domain</div><div class="v">emeraldgrove.co.in</div></div>
+        <div><div class="k">Location</div><div class="v">JP Nagar, Bangalore</div></div>
+        <div><div class="k">Stack</div><div class="v">HTML / CSS / JS + Apps Script</div></div>
+        <div><div class="k">Hosting</div><div class="v">Cloudflare Pages</div></div>
+        <div><div class="k">Analytics</div><div class="v">None (by policy)</div></div>
+        <div><div class="k">Version</div><div class="v">1.0 &ndash; August 2026</div></div>
+        <div><div class="k">Owner</div><div class="v">Amarnath A</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Shell -->
+<div class="container">
+  <div class="ds-shell">
+
+    <!-- Sidebar -->
+    <nav class="ds-sidebar" aria-label="Design system sections">
+      <div class="ds-group-label">Foundation</div>
+      <a href="#identity">01 &ndash; Identity &amp; Positioning</a>
+      <a href="#logo">02 &ndash; Logo &amp; Wordmark</a>
+      <a href="#colour">03 &ndash; Colour System</a>
+      <a href="#typography">04 &ndash; Typography</a>
+      <a href="#spacing">05 &ndash; Spacing &amp; Grid</a>
+      <a href="#photography">06 &ndash; Photography</a>
+      <a href="#iconography">07 &ndash; Iconography</a>
+      <a href="#motion">08 &ndash; Motion</a>
+      <div class="ds-group-label">Components</div>
+      <a href="#buttons">09 &ndash; Buttons &amp; CTAs</a>
+      <a href="#cards">10 &ndash; Cards</a>
+      <a href="#forms">11 &ndash; Forms</a>
+      <a href="#nav">12 &ndash; Navigation &amp; Footer</a>
+      <div class="ds-group-label">Voice &amp; Application</div>
+      <a href="#voice">13 &ndash; Voice &amp; Tone</a>
+      <a href="#seo">14 &ndash; SEO Architecture</a>
+      <a href="#web">15 &ndash; Web Architecture</a>
+      <div class="ds-group-label">Governance</div>
+      <a href="#tokens">16 &ndash; Design Tokens</a>
+      <a href="#dodont">17 &ndash; Do&rsquo;s &amp; Don&rsquo;ts</a>
+      <a href="#assets">18 &ndash; Asset Vault</a>
+    </nav>
+
+    <!-- Content -->
+    <main class="ds-content">
+
+      <!-- 01 Identity -->
+      <section class="ds-section" id="identity">
+        <div class="ds-num">01</div>
+        <h2>Identity &amp; Positioning</h2>
+        <p class="ds-intro">The strategic foundation every surface points back to.</p>
+
+        <h3 class="ds-subhead">Positioning statement</h3>
+        <p>Emerald Grove Events &amp; Spaces is a flexible premium event and celebration venue in JP Nagar, Bangalore &ndash; built for everyone who needs a beautifully designed space that isn&rsquo;t a banquet hall or a bare conference room. One aesthetic address that becomes a birthday party, a corporate offsite, a creator shoot or a community meetup, booked by the hour.</p>
+
+        <h3 class="ds-subhead">Name hierarchy</h3>
+        <table class="ds-table">
+          <tr><th>Level</th><th>Text</th><th>Where it appears</th></tr>
+          <tr><td>Brand name</td><td><strong>Emerald Grove</strong></td><td>Dominant visual element on all collateral</td></tr>
+          <tr><td>Business descriptor</td><td>Events &amp; Spaces</td><td>Lockup sub-line; signage; invoices; GBP; socials</td></tr>
+          <tr><td>SEO / explanatory descriptor</td><td>Flexible Event &amp; Celebration Spaces in Bangalore</td><td>Homepage meta, H1 context, GBP description</td></tr>
+          <tr><td>Legal / registration name</td><td>Emerald Grove Events &amp; Spaces</td><td>Contracts, bank, GST, trademark filings</td></tr>
+        </table>
+
+        <h3 class="ds-subhead">Mission / Vision / Purpose</h3>
+        <table class="ds-table">
+          <tr><th>Pillar</th><th>Statement</th></tr>
+          <tr><td><strong>Purpose</strong></td><td>Enable meaningful experiences &ndash; every booking deserves a space that fits the occasion.</td></tr>
+          <tr><td><strong>Mission</strong></td><td>Make premium event spaces accessible and flexible.</td></tr>
+          <tr><td><strong>Vision</strong></td><td>Become Bangalore&rsquo;s preferred flexible experience venue and the home for Bangalore&rsquo;s recurring event communities.</td></tr>
+        </table>
+
+        <h3 class="ds-subhead">Brand character</h3>
+        <table class="ds-table">
+          <tr><th>We are</th><th>Not</th></tr>
+          <tr><td>Flexible</td><td>Rigid / one-use-case-only</td></tr>
+          <tr><td>Premium</td><td>Cheap or corporate-beige</td></tr>
+          <tr><td>Approachable</td><td>Intimidatingly formal</td></tr>
+          <tr><td>Designed with intention</td><td>Generic stock-photo aesthetic</td></tr>
+          <tr><td>Built for community</td><td>Just another rental box</td></tr>
+        </table>
+
+        <h3 class="ds-subhead">Core values</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;">
+          <span class="value-chip"><span class="dot"></span>Flexibility</span>
+          <span class="value-chip"><span class="dot"></span>Hospitality</span>
+          <span class="value-chip"><span class="dot"></span>Design</span>
+          <span class="value-chip"><span class="dot"></span>Community</span>
+          <span class="value-chip"><span class="dot"></span>Reliability</span>
+        </div>
+
+        <h3 class="ds-subhead">Primary tagline</h3>
+        <p style="font-family:var(--font-display); font-size:1.5rem; color:var(--color-emerald-900); margin-top:8px;">Rent the space. Make it yours.</p>
+        <p style="margin-top:8px; color:var(--color-text-secondary); font-size:0.9rem;">Secondary / SEO: <em>Flexible Event &amp; Celebration Spaces in Bangalore</em></p>
+      </section>
+
+      <!-- 02 Logo -->
+      <section class="ds-section" id="logo">
+        <div class="ds-num">02</div>
+        <h2>Logo &amp; Wordmark</h2>
+        <p class="ds-intro">The mark is an architectural glasshouse frame with a hanging chandelier and flanking botanical leaves &ndash; encoding the brand&rsquo;s three core elements: <em>structure</em> (the frame), <em>elegance</em> (the chandelier), <em>nature</em> (the leaves). This geometry is locked and may never be redrawn for stylistic reasons.</p>
+
+        <h3 class="ds-subhead">Logo variants</h3>
+        <div class="logo-variant-grid">
+          <div class="logo-variant">
+            <div class="stage" style="background:#FAF7EF;">
+              <svg viewBox="0 0 240 240" aria-hidden="true" id="svg-light">
+                <g fill="#0F3D2E" stroke="none"><rect x="105" y="169" width="30" height="3"/><rect x="93" y="175" width="54" height="3"/><rect x="81" y="181" width="78" height="3"/></g>
+                <path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78 M91,48 L149,48 M62,120 L178,120" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M120,78 L120,100 M120,90 C108,90 100,92 100,98 M120,90 C132,90 140,92 140,98 M120,84 C100,82 85,86 82,96 M120,84 C140,82 155,86 158,96 M120,100 L120,96 M100,98 L100,94 M140,98 L140,94 M82,96 L82,92 M158,96 L158,92" fill="none" stroke="#0F3D2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <g fill="#0F3D2E" stroke="none"><circle cx="120" cy="95" r="2.6"/><circle cx="100" cy="93" r="2.6"/><circle cx="140" cy="93" r="2.6"/><circle cx="82" cy="91" r="2.6"/><circle cx="158" cy="91" r="2.6"/></g>
+                <g fill="#0F3D2E" stroke="none"><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(50,172) rotate(-70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(46,168) rotate(-45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(48,163) rotate(-20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(54,160) rotate(0) scale(0.95)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(190,172) rotate(70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(194,168) rotate(45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(192,163) rotate(20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(186,160) rotate(0) scale(0.95)"/></g>
+              </svg>
+            </div>
+            <div class="cap">Emerald / light BG <button data-copy-target="svg-light">Copy SVG</button></div>
+          </div>
+          <div class="logo-variant">
+            <div class="stage" style="background:#0F3D2E;">
+              <svg viewBox="0 0 240 240" aria-hidden="true" id="svg-dark">
+                <g fill="#D4AF37" stroke="none"><rect x="105" y="169" width="30" height="3"/><rect x="93" y="175" width="54" height="3"/><rect x="81" y="181" width="78" height="3"/></g>
+                <path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78 M91,48 L149,48 M62,120 L178,120" fill="none" stroke="#D4AF37" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M120,78 L120,100 M120,90 C108,90 100,92 100,98 M120,90 C132,90 140,92 140,98 M120,84 C100,82 85,86 82,96 M120,84 C140,82 155,86 158,96 M120,100 L120,96 M100,98 L100,94 M140,98 L140,94 M82,96 L82,92 M158,96 L158,92" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <g fill="#D4AF37" stroke="none"><circle cx="120" cy="95" r="2.6"/><circle cx="100" cy="93" r="2.6"/><circle cx="140" cy="93" r="2.6"/><circle cx="82" cy="91" r="2.6"/><circle cx="158" cy="91" r="2.6"/></g>
+                <g fill="#8FA892" stroke="none"><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(50,172) rotate(-70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(46,168) rotate(-45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(48,163) rotate(-20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(54,160) rotate(0) scale(0.95)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(190,172) rotate(70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(194,168) rotate(45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(192,163) rotate(20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(186,160) rotate(0) scale(0.95)"/></g>
+              </svg>
+            </div>
+            <div class="cap">Gold+Sage / dark BG <button data-copy-target="svg-dark">Copy SVG</button></div>
+          </div>
+          <div class="logo-variant">
+            <div class="stage" style="background:#FAF7EF;">
+              <svg viewBox="0 0 240 240" aria-hidden="true" id="svg-bw">
+                <g fill="#241F1A" stroke="none"><rect x="105" y="169" width="30" height="3"/><rect x="93" y="175" width="54" height="3"/><rect x="81" y="181" width="78" height="3"/></g>
+                <path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78 M91,48 L149,48 M62,120 L178,120" fill="none" stroke="#241F1A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M120,78 L120,100 M120,90 C108,90 100,92 100,98 M120,90 C132,90 140,92 140,98 M120,84 C100,82 85,86 82,96 M120,84 C140,82 155,86 158,96 M120,100 L120,96 M100,98 L100,94 M140,98 L140,94 M82,96 L82,92 M158,96 L158,92" fill="none" stroke="#241F1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <g fill="#241F1A" stroke="none"><circle cx="120" cy="95" r="2.6"/><circle cx="100" cy="93" r="2.6"/><circle cx="140" cy="93" r="2.6"/><circle cx="82" cy="91" r="2.6"/><circle cx="158" cy="91" r="2.6"/></g>
+                <g fill="#241F1A" stroke="none"><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(50,172) rotate(-70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(46,168) rotate(-45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(48,163) rotate(-20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(54,160) rotate(0) scale(0.95)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(190,172) rotate(70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(194,168) rotate(45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(192,163) rotate(20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(186,160) rotate(0) scale(0.95)"/></g>
+              </svg>
+            </div>
+            <div class="cap">Bark / print &amp; mono <button data-copy-target="svg-bw">Copy SVG</button></div>
+          </div>
+          <div class="logo-variant">
+            <div class="stage" style="background:#241F1A;">
+              <svg viewBox="0 0 240 240" aria-hidden="true" id="svg-white">
+                <g fill="#FAF7EF" stroke="none"><rect x="105" y="169" width="30" height="3"/><rect x="93" y="175" width="54" height="3"/><rect x="81" y="181" width="78" height="3"/></g>
+                <path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78 M91,48 L149,48 M62,120 L178,120" fill="none" stroke="#FAF7EF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M120,78 L120,100 M120,90 C108,90 100,92 100,98 M120,90 C132,90 140,92 140,98 M120,84 C100,82 85,86 82,96 M120,84 C140,82 155,86 158,96 M120,100 L120,96 M100,98 L100,94 M140,98 L140,94 M82,96 L82,92 M158,96 L158,92" fill="none" stroke="#FAF7EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <g fill="#FAF7EF" stroke="none"><circle cx="120" cy="95" r="2.6"/><circle cx="100" cy="93" r="2.6"/><circle cx="140" cy="93" r="2.6"/><circle cx="82" cy="91" r="2.6"/><circle cx="158" cy="91" r="2.6"/></g>
+                <g fill="#FAF7EF" stroke="none"><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(50,172) rotate(-70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(46,168) rotate(-45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(48,163) rotate(-20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(54,160) rotate(0) scale(0.95)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(190,172) rotate(70) scale(0.9)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(194,168) rotate(45) scale(1.05)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(192,163) rotate(20) scale(1.1)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(186,160) rotate(0) scale(0.95)"/></g>
+              </svg>
+            </div>
+            <div class="cap">Ivory / reversed <button data-copy-target="svg-white">Copy SVG</button></div>
+          </div>
+        </div>
+
+        <h3 class="ds-subhead">Misuse</h3>
+        <div class="misuse-grid">
+          <div class="misuse-tile"><div class="stage" style="background:#FFF;"><svg viewBox="0 0 240 240" width="70" height="70" style="transform:scaleX(-1);"><g fill="#0F3D2E" stroke="none"><rect x="105" y="169" width="30" height="3"/><rect x="93" y="175" width="54" height="3"/><rect x="81" y="181" width="78" height="3"/></g><path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78 M91,48 L149,48 M62,120 L178,120" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Never mirror or flip</div></div>
+          <div class="misuse-tile"><div class="stage" style="background:#FFF;"><svg viewBox="0 0 240 240" width="70" height="70" style="transform:rotate(25deg);"><path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="label">Never rotate</div></div>
+          <div class="misuse-tile"><div class="stage" style="background:#FFF;"><svg viewBox="0 0 240 240" width="70" height="70"><path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78" fill="none" stroke="#E07000" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="label">Never recolour outside system</div></div>
+          <div class="misuse-tile"><div class="stage" style="background:url('https://picsum.photos/seed/misuse-bg/160/130') center/cover;"><svg viewBox="0 0 240 240" width="70" height="70"><g fill="#0F3D2E" stroke="none"><rect x="105" y="169" width="30" height="3"/></g><path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="label">Never on busy photo without overlay</div></div>
+          <div class="misuse-tile"><div class="stage" style="background:#FFF;"><svg viewBox="0 0 240 240" width="70" height="70" style="filter:drop-shadow(0 6px 12px rgba(0,0,0,0.5));"><path d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="label">Never add drop-shadow</div></div>
+          <div class="misuse-tile"><div class="stage" style="background:#FAF7EF;"><svg viewBox="0 0 100 240" width="35" height="70"><path d="M50,18 L10,78 M50,18 L90,78 M10,78 L10,168 M90,78 L90,168 M10,168 L90,168 M50,18 L50,78" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round"/></svg></div><div class="label">Never stretch or distort</div></div>
+        </div>
+
+        <h3 class="ds-subhead">Clear space &amp; minimum size</h3>
+        <p>Maintain a minimum clear space of <strong>1&times; the cap-height</strong> of the &ldquo;E&rdquo; in &ldquo;Emerald&rdquo; on all four sides. Minimum display size: <strong>120px wide</strong> (full-detail), <strong>40px wide</strong> (simplified), <strong>16px</strong> (favicon only, not accompanied by wordmark).</p>
+      </section>
+
+      <!-- 03 Colour -->
+      <section class="ds-section" id="colour">
+        <div class="ds-num">03</div>
+        <h2>Colour System</h2>
+        <p class="ds-intro">Five colours. No sixth ever appears. All values stored as CSS custom properties in variables.css &ndash; never write a raw hex anywhere else.</p>
+
+        <div class="ratio-bar" style="margin-bottom:12px;">
+          <span style="background:#FAF7EF; color:#0F3D2E; flex:0 0 50%;">50% Ivory</span>
+          <span style="background:#E9E1D4; color:#0F3D2E; flex:0 0 20%;">20% Sand</span>
+          <span style="background:#0F3D2E; flex:0 0 18%;">18% Emerald</span>
+          <span style="background:#D4AF37; color:#0F3D2E; flex:0 0 8%;">8%</span>
+          <span style="background:#8FA892; flex:0 0 4%;">&nbsp;</span>
+        </div>
+        <p style="font-size:0.78rem; color:var(--color-text-secondary); margin-bottom:var(--space-md);">Approximate usage split. Ivory+Sand dominant. Emerald as background and key structural accent. Gold for calls to action and highlight moments only. Sage reserved for leaves in the logo mark only.</p>
+
+        <div class="swatch-grid">
+          <div class="swatch" data-hex="#0F3D2E"><div class="chip" style="background:#0F3D2E;"></div><div class="meta"><div class="name">Emerald</div><div class="hex">#0F3D2E</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#2E5D46"><div class="chip" style="background:#2E5D46;"></div><div class="meta"><div class="name">Forest</div><div class="hex">#2E5D46</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#8FA892"><div class="chip" style="background:#8FA892;"></div><div class="meta"><div class="name">Sage</div><div class="hex">#8FA892</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#E9E1D4"><div class="chip" style="background:#E9E1D4;"></div><div class="meta"><div class="name">Sand</div><div class="hex">#E9E1D4</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#D4AF37"><div class="chip" style="background:#D4AF37;"></div><div class="meta"><div class="name">Gold</div><div class="hex">#D4AF37</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#FAF7EF"><div class="chip" style="background:#FAF7EF; border-bottom:1px solid #E4DCC8;"></div><div class="meta"><div class="name">Ivory</div><div class="hex">#FAF7EF</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#241F1A"><div class="chip" style="background:#241F1A;"></div><div class="meta"><div class="name">Bark (text)</div><div class="hex">#241F1A</div><div class="copied-flag">&#10003; Copied</div></div></div>
+          <div class="swatch" data-hex="#A6842A"><div class="chip" style="background:#A6842A;"></div><div class="meta"><div class="name">Gold dark</div><div class="hex">#A6842A</div><div class="copied-flag">&#10003; Copied</div></div></div>
+        </div>
+
+        <h3 class="ds-subhead">Contrast &amp; accessibility</h3>
+        <table class="ds-table">
+          <tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Result</th></tr>
+          <tr><td>Bark #241F1A</td><td>Ivory #FAF7EF</td><td>16.6:1</td><td class="pass">AAA</td></tr>
+          <tr><td>Emerald #0F3D2E</td><td>Ivory #FAF7EF</td><td>13.0:1</td><td class="pass">AAA</td></tr>
+          <tr><td>Ivory #FAF7EF</td><td>Emerald #0F3D2E</td><td>13.0:1</td><td class="pass">AAA</td></tr>
+          <tr><td>Gold #D4AF37</td><td>Emerald #0F3D2E</td><td>5.2:1</td><td class="pass">AA</td></tr>
+          <tr><td>Bark #241F1A</td><td>Sand #E9E1D4</td><td>13.8:1</td><td class="pass">AAA</td></tr>
+          <tr><td>Gold #D4AF37</td><td>Ivory #FAF7EF</td><td>2.2:1</td><td class="fail">Fail (large text only)</td></tr>
+        </table>
+        <p style="font-size:0.82rem; color:var(--color-text-secondary); margin-top:8px;">Gold on ivory fails at normal text size &ndash; use Gold for decorative elements, buttons (where Bark or Ivory text is used on top), and large heading accents only. Never gold body copy on ivory.</p>
+      </section>
+
+      <!-- 04 Typography -->
+      <section class="ds-section" id="typography">
+        <div class="ds-num">04</div>
+        <h2>Typography</h2>
+        <p class="ds-intro">Two typefaces. Playfair Display for all headings (warmth, range, proper lowercase). Montserrat for all body and UI copy (clean, legible, pairs well with the serif). No third typeface, ever.</p>
+
+        <div class="type-specimen">
+          <div class="label">Playfair Display &ndash; headings</div>
+          <p style="font-family:'Playfair Display',Georgia,serif; font-size:2.8rem; font-weight:600; line-height:1.15; color:var(--color-emerald-900);">Rent the space.<br>Make it yours.</p>
+          <p style="font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; font-style:italic; color:var(--color-text-secondary); margin-top:8px;">Elegance. Grandeur. Timeless.</p>
+        </div>
+        <div class="type-specimen">
+          <div class="label">Montserrat &ndash; body &amp; UI</div>
+          <p style="font-family:'Montserrat',sans-serif; font-size:1rem; line-height:1.65; color:var(--color-text-secondary); max-width:60ch;">One beautifully designed space that transforms for weddings, corporate offsites, creator shoots, community meetups and wellness sessions &ndash; hourly, half-day or full-day, at a rate Bangalore can actually afford.</p>
+        </div>
+
+        <h3 class="ds-subhead">Type scale</h3>
+        <table class="scale-table">
+          <tr><th>Role</th><th>Font</th><th>Size</th><th>Weight</th><th>Used for</th></tr>
+          <tr><td>Display / Hero</td><td>Playfair Display</td><td>clamp(2.4rem, 5vw, 4.2rem)</td><td>600</td><td>Hero H1</td></tr>
+          <tr><td>H1</td><td>Playfair Display</td><td>clamp(2rem, 3.4vw, 2.8rem)</td><td>600</td><td>Page titles</td></tr>
+          <tr><td>H2</td><td>Playfair Display</td><td>clamp(1.5rem, 2.4vw, 2rem)</td><td>600</td><td>Section headings</td></tr>
+          <tr><td>H3</td><td>Playfair Display</td><td>1.25rem</td><td>600</td><td>Card headings, subheadings</td></tr>
+          <tr><td>Eyebrow</td><td>Montserrat</td><td>0.8rem</td><td>700</td><td>Section labels, all-caps, 0.14em tracking</td></tr>
+          <tr><td>Body</td><td>Montserrat</td><td>1rem</td><td>400</td><td>All prose</td></tr>
+          <tr><td>Small / UI</td><td>Montserrat</td><td>0.875rem</td><td>400 / 700</td><td>Card body, labels, nav links</td></tr>
+          <tr><td>Brand sub-line</td><td>Montserrat</td><td>0.62rem</td><td>700</td><td>Header lockup &ldquo;Events &amp; Spaces&rdquo;, 0.16em tracking, uppercase</td></tr>
+        </table>
+
+        <h3 class="ds-subhead">Banned fonts</h3>
+        <p>Never use: Inter, Roboto, Poppins, Lato, Open Sans, Nunito, Raleway, or any system sans-serif as a brand typeface. These defeat the deliberate Playfair+Montserrat pairing.</p>
+      </section>
+
+      <!-- 05 Spacing -->
+      <section class="ds-section" id="spacing">
+        <div class="ds-num">05</div>
+        <h2>Spacing &amp; Grid</h2>
+        <p class="ds-intro">Base-4 scale, stored as CSS custom properties. One container. Two hard breakpoints (mobile 560px, tablet/desktop 900px). No others invented ad-hoc.</p>
+        <table class="ds-table">
+          <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+          <tr><td>--space-2xs</td><td>8px</td><td>Icon gap, tight UI spacing</td></tr>
+          <tr><td>--space-xs</td><td>12px</td><td>Badge padding, form gap</td></tr>
+          <tr><td>--space-sm</td><td>16px</td><td>Paragraph margin, button padding</td></tr>
+          <tr><td>--space-md</td><td>24px</td><td>Card padding, section sub-spacing</td></tr>
+          <tr><td>--space-lg</td><td>40px</td><td>Card grid gap, section sub-head gap</td></tr>
+          <tr><td>--space-xl</td><td>64px</td><td>Large content gaps</td></tr>
+          <tr><td>--space-2xl</td><td>96px</td><td>Section padding (mobile)</td></tr>
+          <tr><td>--space-3xl</td><td>140px</td><td>Section padding (desktop)</td></tr>
+        </table>
+        <p style="margin-top:var(--space-sm);"><strong>Corner radius:</strong> Buttons 999px (pill). Cards 18px. Large panels 32px. Organic/blob: CSS border-radius percentage formula. Never sharp (0px) &ndash; the brand is warm, not engineered.</p>
+        <p style="margin-top:8px;"><strong>Container:</strong> max-width 1200px, 24px inline padding. Narrow variant 760px for long-form text (Policies, Brand Design System).</p>
+      </section>
+
+      <!-- 06 Photography -->
+      <section class="ds-section" id="photography">
+        <div class="ds-num">06</div>
+        <h2>Photography &amp; Imagery</h2>
+        <p class="ds-intro">All current photos are placeholders. Real photography is a pre-launch requirement.</p>
+        <h3 class="ds-subhead">Approved subjects &amp; mood</h3>
+        <ul style="padding-left:1.4em; line-height:2; color:var(--color-text-secondary);">
+          <li>The actual space, styled for each segment: weddings, corporate, creator, community, wellness</li>
+          <li>Real events in progress &ndash; candid, warm, genuine</li>
+          <li>Detail shots: lighting, textures, table settings, the chandelier, the entrance</li>
+          <li>Natural light where possible; warm artificial light acceptable for evening events</li>
+        </ul>
+        <h3 class="ds-subhead">Rejected</h3>
+        <ul style="padding-left:1.4em; line-height:2; color:var(--color-text-secondary);">
+          <li>Generic stock photography &ndash; especially staged &ldquo;diverse team laughing&rdquo; imagery</li>
+          <li>AI-generated photo-real images (allowed for mood boards; never on the live site)</li>
+          <li>Over-saturated or heavily filtered photos that don&rsquo;t match the actual space</li>
+          <li>Photography of other venues or locations presented as Emerald Grove</li>
+        </ul>
+        <h3 class="ds-subhead">Placeholder status</h3>
+        <p>All placeholder images are sourced from <code>picsum.photos</code> with unique seeds &ndash; visible &ldquo;Placeholder photo&rdquo; labels on every image. All labels must be removed before any photography goes live.</p>
+      </section>
+
+      <!-- 07 Iconography -->
+      <section class="ds-section" id="iconography">
+        <div class="ds-num">07</div>
+        <h2>Iconography</h2>
+        <p class="ds-intro">Inline SVG only. Rounded stroke caps/joins. Consistent 1.6px stroke weight at 24px base size. No icon fonts. No PNG sprites. No emoji anywhere on any surface.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:var(--space-lg); align-items:flex-start; margin-top:var(--space-md);">
+          <div style="text-align:center;"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">instagram</div></div>
+          <div style="text-align:center;"><svg viewBox="0 0 40 40" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><circle cx="15" cy="22" r="9"/><circle cx="25" cy="22" r="9"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">weddings</div></div>
+          <div style="text-align:center;"><svg viewBox="0 0 40 40" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><rect x="6" y="15" width="28" height="18" rx="3"/><path d="M14 15v-3a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">corporate</div></div>
+          <div style="text-align:center;"><svg viewBox="0 0 40 40" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><path d="M20,32 C11,26 11,14 20,6 C29,14 29,26 20,32 Z"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">wellness</div></div>
+          <div style="text-align:center;"><svg viewBox="0 0 40 40" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><path d="M20 36s11-10.5 11-19a11 11 0 0 0-22 0c0 8.5 11 19 11 19Z"/><circle cx="20" cy="17" r="4"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">location</div></div>
+          <div style="text-align:center;"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><path d="M20 6 9 17l-5-5"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">check</div></div>
+          <div style="text-align:center;"><svg viewBox="0 0 40 40" width="28" height="28" fill="none" stroke="var(--color-emerald-700)" stroke-width="1.6"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="none"/></svg><div style="font-size:0.7rem; color:var(--color-text-secondary); margin-top:4px;">warning</div></div>
+        </div>
+      </section>
+
+      <!-- 08 Motion -->
+      <section class="ds-section" id="motion">
+        <div class="ds-num">08</div>
+        <h2>Motion &amp; Animation</h2>
+        <p class="ds-intro">One easing curve. Three durations. No exceptions.</p>
+        <table class="ds-table">
+          <tr><th>Token</th><th>Value</th><th>Use</th></tr>
+          <tr><td>--ease</td><td>cubic-bezier(0.22, 0.61, 0.36, 1)</td><td>All transitions &ndash; smooth, slightly decelerated</td></tr>
+          <tr><td>--dur-fast</td><td>0.2s</td><td>Hover states, button/link transitions</td></tr>
+          <tr><td>--dur-base</td><td>0.4s</td><td>Component reveals, nav open/close</td></tr>
+          <tr><td>Scroll reveal</td><td>0.6s opacity + translateY(18px), stagger 70ms</td><td>Section content on scroll entry</td></tr>
+        </table>
+        <p style="margin-top:var(--space-sm);"><strong>prefers-reduced-motion:</strong> Every animated element shows its end-state immediately when reduced motion is active. This is non-negotiable &ndash; verified in main.js on page load.</p>
+        <p style="margin-top:8px;"><strong>Never use:</strong> bounce/spring/elastic easing, autoplay audio, parallax that causes layout shift, any UI transition over 0.5s.</p>
+      </section>
+
+      <!-- 09 Buttons -->
+      <section class="ds-section" id="buttons">
+        <div class="ds-num">09</div>
+        <h2>Buttons &amp; CTAs</h2>
+        <div class="preview-box">
+          <div class="preview-row">
+            <a class="btn btn--primary" href="#">Enquire now</a>
+            <a class="btn btn--outline" href="#">See the space</a>
+            <a class="btn btn--brass" href="#">Follow on Instagram</a>
+            <button class="btn btn--primary" disabled style="opacity:0.4; cursor:not-allowed;">Sending&hellip;</button>
+          </div>
+        </div>
+        <table class="ds-table" style="margin-top:var(--space-md);">
+          <tr><th>Variant</th><th>Background</th><th>Text</th><th>When to use</th></tr>
+          <tr><td>Primary</td><td>Emerald #0F3D2E</td><td>Ivory</td><td>Primary CTA on every page &ndash; one per view</td></tr>
+          <tr><td>Outline</td><td>Transparent</td><td>Emerald / Ivory (on dark)</td><td>Secondary action alongside a primary</td></tr>
+          <tr><td>Brass</td><td>Gold #D4AF37</td><td>Emerald</td><td>Social / Instagram CTA only</td></tr>
+        </table>
+        <p style="margin-top:var(--space-sm);"><strong>Copy rules:</strong> Sentence case. Action-verb-first. 2&ndash;4 words. Never: &ldquo;Click here&rdquo;, &ldquo;Submit&rdquo;, all-caps, exclamation marks.</p>
+      </section>
+
+      <!-- 10 Cards -->
+      <section class="ds-section" id="cards">
+        <div class="ds-num">10</div>
+        <h2>Cards &amp; Components</h2>
+        <p class="ds-intro">All cards: white background, 1px --color-border border, 18px radius. Hover: translateY(-4px) + shadow. Never add a second border colour on hover &ndash; the brass border is reserved for the featured pricing card only.</p>
+        <div class="preview-box">
+          <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px;">
+            <div class="card"><div class="eyebrow" style="font-size:0.72rem;">Segment card</div><h3 style="font-size:1rem; margin-top:6px;">Community &amp; Culture</h3><p style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:6px;">Open mics, book clubs, meetups.</p></div>
+            <div class="card"><div class="eyebrow" style="font-size:0.72rem;">Value item</div><div style="font-family:var(--font-display); font-size:2rem; color:var(--color-brass);">01</div><h3 style="font-size:1rem; margin-top:6px;">Flexible by the hour</h3></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 Forms -->
+      <section class="ds-section" id="forms">
+        <div class="ds-num">11</div>
+        <h2>Forms &amp; Inputs</h2>
+        <p class="ds-intro">Minimal fields. No dark-pattern required-asterisk tricks &ndash; required fields are clearly labeled and validated with native browser constraints plus a phone pattern. Honeypot field on every form (hidden, tabindex -1). Never a visible CAPTCHA.</p>
+        <div class="preview-box" style="max-width:400px;">
+          <div class="field"><label for="ds-name">Full name *</label><input type="text" id="ds-name" placeholder="Amar"></div>
+          <div class="field" style="margin-top:12px;"><label for="ds-email">Email *</label><input type="email" id="ds-email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="amar@emeraldgrove.co.in"></div>
+        </div>
+        <p style="margin-top:var(--space-sm);"><strong>Backend:</strong> Google Apps Script web app (POST, no-cors) &rarr; Google Sheet log &rarr; owner email alert &rarr; customer confirmation. Endpoint URL lives in config.js <code>formEndpoint</code>.</p>
+      </section>
+
+      <!-- 12 Nav & Footer -->
+      <section class="ds-section" id="nav">
+        <div class="ds-num">12</div>
+        <h2>Navigation &amp; Footer</h2>
+        <p class="ds-intro">Header and footer are Web Components (custom elements) built once in components.js and injected into every page. Editing the component updates all pages simultaneously &ndash; never copy-paste nav HTML between pages.</p>
+        <table class="ds-table">
+          <tr><th>Header behaviour</th><th>Detail</th></tr>
+          <tr><td>Default (top)</td><td>Transparent background; logo and nav use context-appropriate colour</td></tr>
+          <tr><td>Scrolled (&gt;12px)</td><td>Frosted ivory background via backdrop-filter; shadow; compact padding</td></tr>
+          <tr><td>Mobile (&lt;860px)</td><td>Hamburger toggle; slide-in panel from right</td></tr>
+          <tr><td>CTA in nav</td><td>Always &ldquo;Enquire now&rdquo; pill button. The CTA link target is automatically excluded from the nav link list (filter in components.js).</td></tr>
+        </table>
+        <p style="margin-top:var(--space-sm);"><strong>Footer columns:</strong> Brand + tagline + socials / Explore links / Get in touch / Visit + Get directions map link. Policies page linked in footer only (not in main nav).</p>
+      </section>
+
+      <!-- 13 Voice -->
+      <section class="ds-section" id="voice">
+        <div class="ds-num">13</div>
+        <h2>Voice &amp; Tone</h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); margin-bottom:var(--space-md);">
+          <div>
+            <h3 class="ds-subhead" style="margin-top:0;">We sound</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span class="value-chip"><span class="dot"></span>Warm</span>
+              <span class="value-chip"><span class="dot"></span>Confident</span>
+              <span class="value-chip"><span class="dot"></span>Direct</span>
+              <span class="value-chip"><span class="dot"></span>Grounded</span>
+              <span class="value-chip"><span class="dot"></span>Premium without pretension</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="ds-subhead" style="margin-top:0;">We never sound</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="background:#FBEDE8; color:#A3432F; padding:8px 14px; border-radius:999px; font-size:0.88rem; font-weight:600;">Pushy / salesy</span>
+              <span style="background:#FBEDE8; color:#A3432F; padding:8px 14px; border-radius:999px; font-size:0.88rem; font-weight:600;">Corporate-robotic</span>
+              <span style="background:#FBEDE8; color:#A3432F; padding:8px 14px; border-radius:999px; font-size:0.88rem; font-weight:600;">Casual to the point of unprofessional</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="ds-subhead">Write this, not that</h3>
+        <table class="voice-table">
+          <tr><th>Context</th><th class="no">Don&rsquo;t</th><th class="yes">Do</th></tr>
+          <tr><td>Hero H1</td><td class="no">Book Your Party Hall Now!</td><td class="yes">Rent the space. Make it yours.</td></tr>
+          <tr><td>CTA button</td><td class="no">Click here / Submit</td><td class="yes">Enquire now / See the space</td></tr>
+          <tr><td>Lede / descriptor</td><td class="no">We are the best event venue in Bangalore with world-class facilities</td><td class="yes">One beautifully designed space that transforms for weddings, corporate offsites, creator shoots and wellness sessions &ndash; hourly, half-day or full-day.</td></tr>
+          <tr><td>FAQ answer</td><td class="no">Yes, we do host corporate events and provide many services</td><td class="yes">Regularly. Corporate offsites, workshops and hiring drives are some of our most common weekday bookings.</td></tr>
+          <tr><td>Confirmation email</td><td class="no">Dear valued customer, your query has been received</td><td class="yes">Hi Amar, thanks for reaching out &ndash; we&rsquo;ve got your enquiry and will reply within a few hours.</td></tr>
+        </table>
+        <p style="margin-top:var(--space-sm);"><strong>Mechanics:</strong> Sentence case everywhere. Em dash (&ndash;) not double hyphen. Rupee as &#8377; symbol. Oxford comma. Indian English spelling (organisation, centre, colour) preferred.</p>
+      </section>
+
+      <!-- 14 SEO -->
+      <section class="ds-section" id="seo">
+        <div class="ds-num">14</div>
+        <h2>SEO Architecture</h2>
+        <p class="ds-intro">Keyword strategy: one brand name, many intent-specific descriptors. The brand name is never keyword-stuffed. SEO work happens in meta descriptions, H1 context copy, JSON-LD structured data, and page-level keyword chips.</p>
+        <h3 class="ds-subhead">Target keyword clusters</h3>
+        <table class="ds-table">
+          <tr><th>Customer type</th><th>Primary keywords</th></tr>
+          <tr><td>Birthday / celebration</td><td>birthday party venue Bangalore, party hall JP Nagar, birthday venue near me</td></tr>
+          <tr><td>Engagement / wedding</td><td>engagement venue Bangalore, reception venue Bangalore, roka ceremony venue</td></tr>
+          <tr><td>Corporate / startup</td><td>corporate event space Bangalore, workshop space Bangalore, offsite venue JP Nagar</td></tr>
+          <tr><td>Creator / shoots</td><td>photoshoot space Bangalore, studio space rental, event space Bangalore</td></tr>
+          <tr><td>Community</td><td>open mic venue Bangalore, community event space, meetup space Bangalore</td></tr>
+          <tr><td>Wellness</td><td>yoga studio rental Bangalore, meditation space rental</td></tr>
+        </table>
+        <h3 class="ds-subhead">Per-page implementation</h3>
+        <table class="ds-table">
+          <tr><th>Page</th><th>Title tag</th><th>Priority keyword</th></tr>
+          <tr><td>index.html</td><td>Emerald Grove Events &amp; Spaces | Flexible Event Space in Bangalore</td><td>event space bangalore</td></tr>
+          <tr><td>about.html</td><td>About Us | Emerald Grove Events &amp; Spaces, Bangalore</td><td>about emerald grove bangalore</td></tr>
+          <tr><td>gallery.html</td><td>Event Space Photos | Emerald Grove Events &amp; Spaces, Bangalore</td><td>event venue photos jp nagar</td></tr>
+          <tr><td>contact.html</td><td>Contact Us | Emerald Grove Events &amp; Spaces, JP Nagar Bangalore</td><td>book event space bangalore</td></tr>
+        </table>
+        <p style="margin-top:var(--space-sm);"><strong>Structured data:</strong> LocalBusiness + EventVenue JSON-LD schema on the homepage &ndash; includes address, phone, geo coordinates, capacity, and amenity features. Validated as correct JSON on every deploy.</p>
+        <p style="margin-top:8px;"><strong>robots.txt:</strong> Allows all pages except /pricing.html. Sitemap at /sitemap.xml covers 5 public pages. Neither file requires updating unless new public pages are added.</p>
+      </section>
+
+      <!-- 15 Web Architecture -->
+      <section class="ds-section" id="web">
+        <div class="ds-num">15</div>
+        <h2>Web Architecture</h2>
+        <table class="ds-table">
+          <tr><th>Item</th><th>Detail</th></tr>
+          <tr><td>Stack</td><td>Vanilla HTML / CSS / JS &ndash; no build step, no framework</td></tr>
+          <tr><td>Hosting</td><td>Cloudflare Pages (static)</td></tr>
+          <tr><td>Domain registrar</td><td>GoDaddy</td></tr>
+          <tr><td>Form backend</td><td>Google Apps Script web app &rarr; Google Sheet (emeraldgrovevenue@gmail.com)</td></tr>
+          <tr><td>Analytics</td><td>None by policy &ndash; confirmed in Privacy Policy</td></tr>
+          <tr><td>Public email</td><td>info@emeraldgrove.co.in</td></tr>
+          <tr><td>Operational Gmail</td><td>emeraldgrovevenue@gmail.com</td></tr>
+        </table>
+        <h3 class="ds-subhead">Page map</h3>
+        <table class="ds-table">
+          <tr><th>File</th><th>Status</th><th>Indexed</th></tr>
+          <tr><td>index.html</td><td>Live</td><td>Yes</td></tr>
+          <tr><td>about.html</td><td>Live</td><td>Yes</td></tr>
+          <tr><td>gallery.html</td><td>Live &ndash; placeholder photos</td><td>Yes</td></tr>
+          <tr><td>contact.html</td><td>Live &ndash; form connected</td><td>Yes</td></tr>
+          <tr><td>policies.html</td><td>Live &ndash; draft, pending legal review</td><td>Yes</td></tr>
+          <tr><td>pricing.html</td><td>Live &ndash; internal reference only</td><td>No (noindex + robots.txt)</td></tr>
+          <tr><td>brand-design-system.html</td><td>This document</td><td>No (noindex)</td></tr>
+        </table>
+        <h3 class="ds-subhead">Shared components pattern</h3>
+        <p>Header and footer are built once in <code>components.js</code> as Web Components (<code>&lt;site-header&gt;</code>, <code>&lt;site-footer&gt;</code>). Brand identity, nav links, contact details and social links are centralised in <code>config.js</code>. Updating config.js propagates to every page without touching HTML files.</p>
+      </section>
+
+      <!-- 16 Tokens -->
+      <section class="ds-section" id="tokens">
+        <div class="ds-num">16</div>
+        <h2>Design Tokens</h2>
+        <p class="ds-intro">The canonical source of truth. Every other section of this document should be derivable from these values. Never write a raw hex, pixel value, or cubic-bezier outside this block.</p>
+        <div class="code-block">
+          <button class="copy-btn" data-copy-target="token-block">Copy</button>
+          <pre id="token-block">:root {
+  /* Palette */
+  --color-ivory:            #FAF7EF;
+  --color-cream:            #E9E1D4;
+  --color-white:            #FFFFFF;
+  --color-emerald-900:      #0F3D2E;
+  --color-emerald-700:      #2E5D46;
+  --color-emerald-100:      #E1E9E3;
+  --color-sage:             #8FA892;
+  --color-brass:            #D4AF37;
+  --color-brass-light:      #E4CB77;
+  --color-brass-dark:       #A6842A;
+  --color-bark:             #241F1A;
+  --color-text-secondary:   #6B6656;
+  --color-text-on-dark:     #F1EAD8;
+  --color-text-on-dark-muted: #B9C2BB;
+  --color-border:           #E4DCC8;
+  --color-border-on-dark:   rgba(241,234,216,0.16);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Montserrat', -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-2xs: 8px;   --space-xs: 12px;  --space-sm: 16px;
+  --space-md:  24px;  --space-lg: 40px;  --space-xl: 64px;
+  --space-2xl: 96px;  --space-3xl: 140px;
+
+  /* Shape */
+  --radius-sm:      8px;
+  --radius-md:      18px;
+  --radius-lg:      32px;
+  --radius-organic: 62% 38% 55% 45% / 45% 55% 45% 55%;
+  --container:      1200px;
+
+  /* Motion */
+  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 0.2s;
+  --dur-base: 0.4s;
+}</pre>
+        </div>
+      </section>
+
+      <!-- 17 Do / Don't -->
+      <section class="ds-section" id="dodont">
+        <div class="ds-num">17</div>
+        <h2>Do&rsquo;s &amp; Don&rsquo;ts</h2>
+        <p class="ds-intro">The fastest onboarding checklist for any new collaborator. Eight rule pairs.</p>
+        <div class="dodont-grid">
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Use only the five locked palette colours &ndash; Emerald, Forest, Sage, Sand, Gold &ndash; via CSS custom properties.</p><div class="why">Token discipline is what keeps the brand coherent across every surface and every contributor.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Introduce a third typeface, a blue link colour, a green success state, or any hex not in the token block.</p><div class="why">One unexpected colour breaks the "five colours" law permanently in that viewer's eyes.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Set every heading in Playfair Display, every UI and body element in Montserrat.</p><div class="why">The serif+sans pairing is the most visible carrier of the brand's warmth-with-precision character.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Use Inter, Roboto, Poppins or any system sans-serif as a brand typeface.</p><div class="why">These are the defaults that make everything look the same. They actively destroy differentiation.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Use the logo mark as an inline SVG in the header/footer, rendered by components.js from the locked geometry.</p><div class="why">The mark is locked geometry &ndash; component injection means it can never accidentally drift from the source of truth.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Redraw, mirror, rotate, stretch, recolour, shadow, or crop the logo mark for any reason.</p><div class="why">The mark encodes structure + elegance + nature. Any modification destroys that encoded meaning.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>One primary CTA per view. Name it with an action verb: &ldquo;Enquire now&rdquo;, &ldquo;See the space&rdquo;, &ldquo;Send another enquiry&rdquo;.</p><div class="why">Multiple CTAs split attention and dilute conversion; the right verb tells people exactly what happens next.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Use &ldquo;Click here&rdquo;, &ldquo;Submit&rdquo;, &ldquo;Learn more&rdquo;, all-caps labels, or exclamation marks on any button.</p><div class="why">Generic labels are invisible. Vague labels create anxiety. Shouting labels are off-brand.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Update config.js when any contact detail, social link or brand copy changes &ndash; and nothing else.</p><div class="why">Config is the single source of truth for identity. Change it once and every page updates instantly.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Hardcode phone numbers, email addresses, or the brand name inside individual HTML files.</p><div class="why">Hardcoded values go stale and diverge. When the phone number changes, you can&rsquo;t find them all.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Every animation respects prefers-reduced-motion by showing the end state immediately &ndash; verified in main.js.</p><div class="why">Motion sickness is real. This is a legal accessibility requirement in many markets and a human decency baseline in all of them.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Use bounce, spring or elastic easing. Use autoplay audio. Add UI transitions over 0.5s. Add parallax that shifts layout.</p><div class="why">These slow pages down, cause nausea for some users, and feel inconsistent with the calm, premium brand character.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Use only real photography of the actual space for the live site, with explicit written consent for any identifiable person.</p><div class="why">A venue brand lives or dies on its photography. AI images, stock images and other-venue images all erode trust the moment someone shows up in person.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Launch with placeholder images from picsum.photos. Label them clearly in development; remove all labels before going live.</p><div class="why">Placeholder labels are a development convention, not a design feature.</div></div>
+          <div class="dodont-card do"><div class="tag">&#10003; Do</div><p>Keep pricing off the public pages. Share pricing.html by direct URL after an enquiry, where context and relationship exist.</p><div class="why">Enquiry-gated pricing lets you flex on discounts, bundle add-ons, and read the customer before quoting. Numbers without context create rejection before conversation.</div></div>
+          <div class="dodont-card dont"><div class="tag">&#10005; Don&rsquo;t</div><p>Add pricing.html to the nav, link it from any public page, or add a sitemap entry for it.</p><div class="why">The page already carries noindex and a robots.txt Disallow. Any public link defeats both protections at once.</div></div>
+        </div>
+      </section>
+
+      <!-- 18 Asset Vault -->
+      <section class="ds-section" id="assets">
+        <div class="ds-num">18</div>
+        <h2>Asset Vault &amp; Governance</h2>
+        <table class="asset-table">
+          <tr><th>Asset</th><th>Spec</th><th>Status</th></tr>
+          <tr><td>Logo mark &ndash; Emerald (light BG)</td><td>SVG, viewBox 0 0 240 240</td><td><span class="status-pill shipped">Shipped</span></td></tr>
+          <tr><td>Logo mark &ndash; Gold+Sage (dark BG)</td><td>SVG, viewBox 0 0 240 240</td><td><span class="status-pill shipped">Shipped</span></td></tr>
+          <tr><td>Logo mark &ndash; Bark / monochrome</td><td>SVG, viewBox 0 0 240 240</td><td><span class="status-pill shipped">Shipped</span></td></tr>
+          <tr><td>Logo mark &ndash; Ivory / reversed</td><td>SVG, viewBox 0 0 240 240</td><td><span class="status-pill shipped">Shipped</span></td></tr>
+          <tr><td>Favicon</td><td>SVG, simplified mark + ivory rounded-rect BG</td><td><span class="status-pill shipped">Shipped</span></td></tr>
+          <tr><td>OG / social share image</td><td>1200&times;630px, brand name on dark BG</td><td><span class="status-pill pending">Pending</span></td></tr>
+          <tr><td>Venue photography &ndash; all segments</td><td>Min 2000px wide, real space only</td><td><span class="status-pill placeholder">Placeholder &ndash; pre-launch blocker</span></td></tr>
+          <tr><td>Logo as PNG (for print/social avatars)</td><td>1000&times;1000px, transparent BG, both colorways</td><td><span class="status-pill pending">Pending</span></td></tr>
+        </table>
+
+        <h3 class="ds-subhead">Pre-ship checklist</h3>
+        <ul style="padding-left:1.4em; line-height:2.2; color:var(--color-text-secondary);">
+          <li>All placeholder photos replaced with real venue photography</li>
+          <li>&ldquo;Placeholder photo&rdquo; labels removed from every image</li>
+          <li>config.js: formEndpoint updated to live Apps Script URL</li>
+          <li>config.js: YouTube and Facebook URLs updated (not &ldquo;#&rdquo;)</li>
+          <li>policies.html: draft banner removed (post legal review)</li>
+          <li>policies.html: registered entity name + address filled in</li>
+          <li>apps-script-Code.gs: OWNER_EMAILS confirmed correct; redeployed as new version</li>
+          <li>Google Business Profile: live and matching the address / name / phone in config.js exactly</li>
+          <li>sitemap.xml: submitted to Google Search Console</li>
+          <li>Domain DNS: GoDaddy pointed correctly at Cloudflare Pages</li>
+          <li>Contact page map: mapsEmbedSrc and mapsUrl updated to exact venue coordinates</li>
+          <li>OG image created and added to all page &lt;head&gt; tags</li>
+          <li>Browser tab favicon verified at 16px and 32px</li>
+          <li>All pages tested on Chrome (desktop + mobile) and Safari (iOS)</li>
+        </ul>
+
+        <h3 class="ds-subhead">Governance</h3>
+        <table class="ds-table">
+          <tr><th>Role</th><th>Person</th></tr>
+          <tr><td>Brand design sign-off</td><td>Amarnath A (Marketing Strategist)</td></tr>
+          <tr><td>Content / copy sign-off</td><td>Amarnath A</td></tr>
+          <tr><td>Legal / policy sign-off</td><td>Chartered Accountant / solicitor (TBC)</td></tr>
+          <tr><td>Client contact</td><td>Deepti (Emerald Grove Events &amp; Spaces)</td></tr>
+        </table>
+
+        <p style="margin-top:var(--space-lg); font-size:0.82rem; color:var(--color-text-secondary);">Brand Design System v1.0 &ndash; August 2026. Internal use only. Not for distribution. Update the version number and date at the top of this document whenever a significant change is made. Minor edits (copy corrections, new asset status) do not require a version bump.</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<style>
+.value-chip { display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px; background:var(--color-white); border:1px solid var(--color-border); font-family:var(--font-display); font-weight:600; color:var(--color-emerald-900); font-size:0.95rem; }
+.value-chip .dot { width:7px; height:7px; border-radius:50%; background:var(--color-brass); display:inline-block; }
+.btn { display:inline-flex; align-items:center; gap:var(--space-2xs); padding:0.9em 1.6em; border-radius:999px; font-weight:700; font-size:var(--fs-small); letter-spacing:0.02em; border:1px solid transparent; cursor:pointer; text-decoration:none; font-family:var(--font-body); }
+.btn--primary { background:var(--color-emerald-700); color:var(--color-ivory); }
+.btn--outline { background:transparent; color:var(--color-emerald-900); border-color:var(--color-emerald-900); }
+.btn--brass { background:var(--color-brass); color:var(--color-emerald-900); }
+.card { background:var(--color-white); border-radius:var(--radius-md); border:1px solid var(--color-border); padding:var(--space-lg); }
+.eyebrow { font-family:var(--font-body); font-size:var(--fs-eyebrow); font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-brass-dark); display:inline-block; }
+.field { display:flex; flex-direction:column; gap:6px; }
+.field label { font-size:var(--fs-small); font-weight:700; color:var(--color-emerald-900); }
+.field input { font:inherit; padding:0.85em 1em; border-radius:var(--radius-sm); border:1px solid var(--color-border); background:var(--color-white); color:var(--color-bark); }
+</style>
+
+<script>
+(function () {
+  // ---- Click-to-copy: swatches ----
+  document.querySelectorAll('.swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      const hex = sw.getAttribute('data-hex');
+      if (!hex) return;
+      navigator.clipboard.writeText(hex).then(() => {
+        sw.classList.add('is-copied');
+        setTimeout(() => sw.classList.remove('is-copied'), 1400);
+      });
+    });
+  });
+
+  // ---- Click-to-copy: logo variant SVG code ----
+  document.querySelectorAll('.logo-variant .cap button, .code-block .copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-copy-target');
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const text = el.tagName === 'TEXTAREA' || el.tagName === 'PRE' ? el.textContent : el.outerHTML;
+      navigator.clipboard.writeText(text.trim()).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = original; }, 1400);
+      });
+    });
+  });
+
+  // ---- Sidebar active-section tracking ----
+  const sections = document.querySelectorAll('.ds-section[id]');
+  const links = document.querySelectorAll('.ds-sidebar a');
+  if (sections.length && links.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    sections.forEach(s => observer.observe(s));
+  }
+})();
+
+</script>
+</body>
+</html>

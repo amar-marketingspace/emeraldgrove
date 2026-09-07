@@ -1,0 +1,40 @@
+/* ---------- About hero ---------- */
+.about-hero { padding-top: calc(var(--space-3xl) + 20px); padding-bottom: var(--space-xl); position: relative; overflow: clip; }
+.about-hero h1 { font-size: var(--fs-hero); max-width: 16ch; margin-top: var(--space-sm); }
+.about-hero .lede { margin-top: var(--space-md); font-size: 1.1rem; color: var(--color-text-secondary); max-width: 58ch; }
+
+/* ---------- Origin / narrative split ---------- */
+.origin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: center; }
+.origin-grid .ph-photo { height: 420px; }
+.origin-grid p + p { margin-top: var(--space-sm); }
+.origin-grid p { color: var(--color-text-secondary); }
+@media (max-width: 900px) {
+  .origin-grid { grid-template-columns: 1fr; }
+  .origin-grid .ph-photo { height: 300px; }
+}
+
+/* ---------- Purpose / Mission / Vision ---------- */
+.pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+.pillar-card { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-lg); }
+.pillar-card .eyebrow { margin-bottom: var(--space-sm); }
+.pillar-card p { color: var(--color-text-secondary); font-size: 0.95rem; }
+@media (max-width: 780px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Values ---------- */
+.values-row { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.value-chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px;
+  background: var(--color-white); border: 1px solid var(--color-border); font-family: var(--font-display);
+  font-weight: 600; color: var(--color-emerald-900); font-size: 0.95rem;
+}
+.value-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-brass); }
+
+/* ---------- Platform thesis ---------- */
+.thesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: center; }
+.thesis-grid .ph-photo { height: 380px; }
+.thesis-grid blockquote { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--color-emerald-900); line-height: 1.4; margin: 0 0 var(--space-md); }
+.thesis-grid p { color: var(--color-text-secondary); }
+@media (max-width: 900px) {
+  .thesis-grid { grid-template-columns: 1fr; }
+  .thesis-grid .ph-photo { height: 280px; order: -1; }
+}

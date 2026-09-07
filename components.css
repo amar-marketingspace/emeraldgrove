@@ -13,16 +13,23 @@ site-header { display: block; }
   box-shadow: 0 1px 0 var(--color-border);
 }
 
-.brand-lockup { display: flex; align-items: center; gap: 10px; }
-.brand-lockup svg { width: 36px; height: 36px; flex-shrink: 0; }
+.brand-lockup { display: flex; align-items: center; gap: 12px; }
+.brand-lockup .brand-mark { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-lockup .brand-name {
-  font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--color-emerald-900);
+  font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--color-emerald-900);
   letter-spacing: 0.01em;
+}
+.brand-lockup .brand-sub {
+  font-family: var(--font-body); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--color-brass-dark); margin-top: 3px;
 }
 .is-scrolled .brand-lockup .brand-name,
 .site-header:not(.on-dark) .brand-lockup .brand-name { color: var(--color-emerald-900); }
 .site-header.on-dark:not(.is-scrolled) .brand-lockup .brand-name { color: var(--color-ivory); }
-.site-header.on-dark:not(.is-scrolled) .brand-mark-fg { fill: var(--color-ivory); }
+.site-header.on-dark:not(.is-scrolled) .brand-lockup .brand-sub { color: var(--color-brass-light); }
+.site-footer .brand-lockup .brand-name { color: var(--color-ivory); }
+.site-footer .brand-lockup .brand-sub { color: var(--color-brass-light); }
 
 .main-nav { display: flex; align-items: center; gap: var(--space-lg); }
 .main-nav ul { display: flex; gap: var(--space-md); }
@@ -36,6 +43,8 @@ site-header { display: block; }
   background: var(--color-brass); transition: width var(--dur-fast) var(--ease);
 }
 .main-nav a:hover::after, .main-nav a[aria-current="page"]::after { width: 100%; }
+.main-nav a.btn { color: var(--color-ivory); }
+.main-nav a.btn::after { display: none; }
 
 .nav-toggle { display: none; background: none; border: none; padding: 6px; }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {

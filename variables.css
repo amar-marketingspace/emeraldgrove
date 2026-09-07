@@ -1,20 +1,21 @@
 :root {
-  /* Brand palette — Deep Grove, lightened: ivory/cream dominant, emerald + brass as accents */
+  /* Locked brand palette – Emerald / Forest / Sage / Sand / Gold */
   --color-ivory: #FAF7EF;
-  --color-cream: #F1EAD8;
+  --color-cream: #E9E1D4;    /* "Sand" */
   --color-white: #FFFFFF;
 
-  --color-emerald-900: #12352A;
-  --color-emerald-700: #1B4D3A;
-  --color-emerald-600: #235E48;
-  --color-emerald-500: #2F6B52;
-  --color-emerald-100: #E4EEE6;
+  --color-emerald-900: #0F3D2E;   /* "Emerald" */
+  --color-emerald-700: #2E5D46;   /* "Forest" */
+  --color-emerald-600: #3A6E55;
+  --color-emerald-500: #4A8267;
+  --color-emerald-100: #E1E9E3;
+  --color-sage: #8FA892;
 
-  --color-brass: #B08D4F;
-  --color-brass-light: #D9C08A;
-  --color-brass-dark: #8E6F38;
+  --color-brass: #D4AF37;         /* "Gold" */
+  --color-brass-light: #E4CB77;
+  --color-brass-dark: #A6842A;
 
-  --color-bark: #2A2620;
+  --color-bark: #241F1A;
   --color-text-secondary: #6B6656;
   --color-text-on-dark: #F1EAD8;
   --color-text-on-dark-muted: #B9C2BB;
@@ -22,9 +23,11 @@
   --color-border: #E4DCC8;
   --color-border-on-dark: rgba(241, 234, 216, 0.16);
 
-  /* Typography */
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Karla', -apple-system, sans-serif;
+  /* Typography – Playfair Display for headings (proper lowercase, works at
+     paragraph-heading scale, unlike Cinzel which is caps-only and better
+     reserved for the logo wordmark art itself); Montserrat for body. */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', -apple-system, sans-serif;
 
   --fs-hero: clamp(2.4rem, 5vw, 4.2rem);
   --fs-h1: clamp(2rem, 3.4vw, 2.8rem);
@@ -58,7 +61,7 @@
   --dur-fast: 0.2s;
   --dur-base: 0.4s;
 
-  /* Site identity — swap these when reusing the template for another venue */
-  --brand-name: "Emerald Grove Events";
+  /* Site identity – swap these when reusing the template for another venue */
+  --brand-name: "Emerald Grove Events & Spaces";
   --brand-location: "JP Nagar, Bangalore";
 }

@@ -1,6 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-  <rect width="40" height="40" rx="9" fill="#FAF7EF"/>
-  <path d="M20,36 C12,30 12,18 20,11 C28,18 28,30 20,36 Z" transform="rotate(-32 20 36)" fill="#B08D4F"/>
-  <path d="M20,36 C12,30 12,18 20,11 C28,18 28,30 20,36 Z" transform="rotate(32 20 36)" fill="#B08D4F"/>
-  <path d="M20,36 C10,29 11,13 20,4 C29,13 30,29 20,36 Z" fill="#1B4D3A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img">
+<title>Emerald Grove favicon</title><desc>Simplified single-colour version of the Emerald Grove mark for small sizes such as browser tabs.</desc>
+<rect width="240" height="240" rx="40" fill="#FAF6EF"/><path class="ln-frame" d="M120,18 L62,78 M120,18 L178,78 M62,78 L62,168 M178,78 L178,168 M62,168 L178,168 M120,18 L120,78" fill="none" stroke="#0F3D2E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path class="ln-chandelier" d="M120,78 L120,100 M120,90 C108,90 100,92 100,98 M120,90 C132,90 140,92 140,98" fill="none" stroke="#0F3D2E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><g class="ln-leaves" fill="#0F3D2E" stroke="none"><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(48,168) rotate(-45) scale(1.3)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(54,160) rotate(0) scale(1.2)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(192,168) rotate(45) scale(1.3)"/><path d="M0,0 C-9,-8 -10,-22 0,-34 C10,-22 9,-8 0,0 Z" transform="translate(186,160) rotate(0) scale(1.2)"/></g>
 </svg>

@@ -46,7 +46,7 @@ p { margin: 0; }
 .section-head { max-width: 640px; margin-bottom: var(--space-xl); }
 .section-head--center { margin-inline: auto; text-align: center; }
 
-/* Wavy accent underline — used under key words instead of a straight rule */
+/* Wavy accent underline – used under key words instead of a straight rule */
 .underline-accent { position: relative; white-space: nowrap; }
 .underline-accent svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.3em; }
 
@@ -114,3 +114,13 @@ p { margin: 0; }
 [data-reveal="stagger"].is-visible > *:nth-child(3) { transition-delay: 0.19s; }
 [data-reveal="stagger"].is-visible > *:nth-child(4) { transition-delay: 0.26s; }
 [data-reveal="stagger"].is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+
+/* ---------- Decorative blobs (scattered across sections for visual life) ---------- */
+.deco-blob { position: absolute; border-radius: var(--radius-organic); z-index: 0; pointer-events: none; }
+.deco-blob--sm { width: 220px; height: 220px; }
+.deco-blob--md { width: 360px; height: 360px; }
+.deco-blob--lg { width: 560px; height: 560px; }
+.deco-blob--emerald { background: var(--color-emerald-100); opacity: 0.7; }
+.deco-blob--brass { background: var(--color-brass-light); opacity: 0.22; }
+.deco-blob--outline { background: none; border: 1.5px solid var(--color-brass); opacity: 0.35; }
+@media (max-width: 720px) { .deco-blob--lg { width: 340px; height: 340px; } .deco-blob--md { width: 240px; height: 240px; } }

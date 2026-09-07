@@ -19,3 +19,18 @@
 
   revealEls.forEach(el => observer.observe(el));
 })();
+
+// ---- FAQ: one-open-at-a-time ----
+(function () {
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (!faqItems.length) return;
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        faqItems.forEach(other => {
+          if (other !== item && other.open) other.removeAttribute('open');
+        });
+      }
+    });
+  });
+})();
